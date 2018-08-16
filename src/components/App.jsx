@@ -1,6 +1,7 @@
 import React from 'react'
+import store, { addRow, AVAILABLE_COLORS, pickColor } from '../store'
 import Table from './Table.jsx'
-import store, { addRow } from '../store'
+import ColorSelector from './ColorSelector.jsx'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,10 +10,15 @@ export default class App extends React.Component {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState()))
 
     this.handleAddRowClick = this.handleAddRowClick.bind(this)
+    this.handleColorChange = this.handleColorChange.bind(this)
   }
 
   handleAddRowClick() {
     store.dispatch(addRow())
+  }
+
+  handleColorChange(evt) {
+    store.dispatch(pickColor(evt.target.value))
   }
 
   render() {
@@ -20,18 +26,10 @@ export default class App extends React.Component {
       <h1>Pixelate</h1>
       <div>
         <button id='add-row' onClick={this.handleAddRowClick}>Add a row</button>
-        <select>
-          <option value="red">Red</option>
-          <option value="orange">Orange</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="blue">Blue</option>
-          <option value="indigo">Indigo</option>
-          <option value="violet">Violet</option>
-          <option value="black">Black</option>
-          <option value="white">White</option>
-          <option value="brown">Brown</option>
-        </select>
+        <ColorSelector colors={AVAILABLE_COLORS}
+                       selectedColor={this.state.selectedColor}
+                       onChange={this.handleColorChange}
+        />
       </div>
       <Table grid={this.state.grid} />
     </div>)
