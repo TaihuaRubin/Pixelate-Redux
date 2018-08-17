@@ -1,5 +1,5 @@
 import React from 'react'
-import store, { addRow, AVAILABLE_COLORS, pickColor } from '../store'
+import store, { addRow, AVAILABLE_COLORS, pickColor, paintEnd } from '../store'
 import Table from './Table.jsx'
 import ColorSelector from './ColorSelector.jsx'
 
@@ -10,6 +10,7 @@ export default class App extends React.Component {
 
     this.handleAddRowClick = this.handleAddRowClick.bind(this)
     this.handleColorChange = this.handleColorChange.bind(this)
+    this.handleMouseUp = this.handleMouseUp.bind(this)
   }
 
   componentDidMount() {
@@ -28,9 +29,14 @@ export default class App extends React.Component {
     store.dispatch(pickColor(evt.target.value))
   }
 
+  handleMouseUp(evt) {
+    evt.preventDefault()
+    store.dispatch(paintEnd())
+  }
+
   render() {
     return (
-      <div id="pixelate">
+      <div id="pixelate" onMouseUp={this.handleMouseUp}>
         <h1>Pixelate</h1>
         <div>
           <button id='add-row' onClick={this.handleAddRowClick}>Add a row</button>
