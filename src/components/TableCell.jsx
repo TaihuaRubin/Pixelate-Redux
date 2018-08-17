@@ -11,8 +11,7 @@ export default class TableCell extends React.Component {
 
   handleClick(e) {
     e.preventDefault()
-    const color = store.getState().selectedColor
-    store.dispatch(colorize(this.props.rowIdx, this.props.colIdx, color))
+    store.dispatch(colorize(this.props.rowIdx, this.props.colIdx))
   }
 
   render() {

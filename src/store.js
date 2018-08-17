@@ -29,7 +29,7 @@ const COLORIZE   = 'COLORIZE'
 // ACTION CREATORS
 export const addRow = () => ({ type: ADD_ROW })
 export const pickColor = (color) => ({ type: PICK_COLOR, color })
-export const colorize = (row, column, color) => ({ type: COLORIZE, row, column, color })
+export const colorize = (row, column) => ({ type: COLORIZE, row, column })
 
 const reducer = (state=initialState, action) => {
   console.log(action)
@@ -41,7 +41,7 @@ const reducer = (state=initialState, action) => {
       return { ...state, selectedColor: action.color }
     case COLORIZE:
       const newGrid = [...state.grid]
-      newGrid[action.row][action.column] = action.color
+      newGrid[action.row][action.column] = state.selectedColor
       return { ...state, grid: newGrid}
     default:
       return state
