@@ -1,4 +1,5 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import loggerMiddleware from 'redux-logger'
 
 export const AVAILABLE_COLORS = [
   "red",
@@ -60,4 +61,4 @@ const reducer = (state=initialState, action) => {
   }
 }
 
-export default createStore(reducer)
+export default createStore(reducer, applyMiddleware(loggerMiddleware))
