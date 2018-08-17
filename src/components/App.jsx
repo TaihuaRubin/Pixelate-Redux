@@ -34,7 +34,6 @@ export default class App extends React.Component {
   }
 
   handleMouseUp(evt) {
-    evt.preventDefault()
     store.dispatch(paintEnd())
   }
 

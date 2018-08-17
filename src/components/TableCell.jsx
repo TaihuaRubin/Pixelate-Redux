@@ -31,7 +31,6 @@ export default class TableCell extends React.Component {
   }
 
   handleMouseDown(e) {
-    e.preventDefault()
     store.dispatch(paintStart())
     store.dispatch(colorize(this.props.rowIdx, this.props.colIdx))
   }
