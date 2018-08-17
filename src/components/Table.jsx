@@ -5,7 +5,7 @@ export default (props) => {
   return (
     <table>
       <tbody>
-        { props.grid.map((row, key) => <TableRow key={key} row={row} />) }
+        { props.grid.map((row, rowIdx) => <TableRow key={rowIdx} rowIdx={rowIdx} row={row} />) }
       </tbody>
     </table>
   )
