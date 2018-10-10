@@ -1,5 +1,5 @@
 import React from 'react'
-import store, { addRow, addColumn, AVAILABLE_COLORS, pickColor, paintEnd } from '../store'
+import store, { addRow, AVAILABLE_COLORS, pickColor, paintEnd } from '../store'
 import Table from './Table.jsx'
 import ColorSelector from './ColorSelector.jsx'
 
@@ -25,10 +25,6 @@ export default class App extends React.Component {
     store.dispatch(addRow())
   }
 
-  handleAddColumnClick() {
-    store.dispatch(addColumn())
-  }
-
   handleColorChange(evt) {
     store.dispatch(pickColor(evt.target.value))
   }
@@ -43,7 +39,6 @@ export default class App extends React.Component {
         <h1>Pixelate</h1>
         <div>
           <button id='add-row' onClick={this.handleAddRowClick}>Add a row</button>
-          <button id='add-column' onClick={this.handleAddColumnClick}>Add a column</button>
           <ColorSelector colors={AVAILABLE_COLORS}
                          selectedColor={this.state.selectedColor}
                          onChange={this.handleColorChange}
