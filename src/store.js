@@ -41,8 +41,7 @@ export const paintEnd = () => ({ type: PAINT_END })
 const reducer = (state=initialState, action) => {
   switch (action.type) {
     case ADD_ROW:
-      const numCols = state.grid.length ? state.grid[0].length : 1
-      const newRow = Array(numCols).fill('')
+      const newRow = Array(gridWidth(state.grid)).fill('')
       return { ...state, grid: [...state.grid, newRow] }
     case ADD_COLUMN:
       return { ...state, grid: state.grid.map(r => [...r, ''])}
@@ -59,6 +58,10 @@ const reducer = (state=initialState, action) => {
     default:
       return state
   }
+}
+
+function gridWidth(grid) {
+  return grid[0].length || 0
 }
 
 export default createStore(reducer, applyMiddleware(loggerMiddleware))
