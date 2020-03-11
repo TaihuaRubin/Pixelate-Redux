@@ -1,8 +1,10 @@
 import React from "react";
 import TableRow from "./TableRow.jsx";
-import { connect } from "react-redux";
+import {useSelector} from "react-redux";
 
-export default connect(state => ({ grid: state.grid }))(props => {
+export default function Table(props) {
+  const grid = useSelector(state => state.grid);
+
   return (
     <table>
       <tbody>
@@ -12,4 +14,15 @@ export default connect(state => ({ grid: state.grid }))(props => {
       </tbody>
     </table>
   );
-});
+}
+//export default connect(state => ({ grid: state.grid }))(props => {
+//  return (
+//    <table>
+//      <tbody>
+//        {props.grid.map((row, rowIdx) => (
+//          <TableRow key={rowIdx} rowIdx={rowIdx} row={row} />
+//        ))}
+//      </tbody>
+//    </table>
+//  );
+//});

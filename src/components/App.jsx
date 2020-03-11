@@ -1,5 +1,5 @@
 import React from "react";
-import { addRow, AVAILABLE_COLORS, pickColor } from "../store";
+import { AVAILABLE_COLORS } from "../store";
 import Table from "./Table.jsx";
 import AddRow from "./AddRow.jsx";
 import ColorSelector from "./ColorSelector.jsx";
